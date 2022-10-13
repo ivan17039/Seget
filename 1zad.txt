@@ -67,4 +67,4 @@ kraj datoteke - EOF (vrijednost 255 ili -1)
 \n - line feed
 \r - carriage return 
 
-koristi typedef, dinamicku alokaciju memorije, malloc(rezervira memoriju), calloc(postavi na 0)
+koristi typedef, dinamicku alokaciju memorije, malloc(rezervira memoriju), calloc(postavi na 0),fscanf,oslobodit memoriju
