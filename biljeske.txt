@@ -1,13 +1,17 @@
 |RAM|
 CODE(read only)
-STACK
+STACK (pokazivac)
 CONST.(read only)
 HEAP
 
-pokazivac - varijabla koja sadrzi adresu druge varijable
+pokazivac - varijabla koja sadrzi adresu druge varijable (ili 4 ili 8 bajtova)
 kraj stringa - 0
 kraj datoteke - EOF (vrijednost 255 ili -1)
 \n - line feed
 \r - carriage return 
 
 koristi typedef, dinamicku alokaciju memorije, malloc(rezervira memoriju), calloc(postavi na 0),fscanf,oslobodit memoriju
+
+bazno indexno adresiranje 
+big O(1)-notacija
+kod vezane liste O(n)p
