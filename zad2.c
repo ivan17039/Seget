@@ -6,8 +6,8 @@
 
 typedef struct osoba* Pozicija;
 struct osoba{
-	char ime[30];
-	char prezime[30];
+	char ime[50];
+	char prezime[50];
 	int god;
 	Pozicija next;
 };
@@ -107,7 +107,7 @@ int ispis_I(Pozicija P)
 
 int trazi_T(Pozicija P)
 {
-	char Prez[30];
+	char Prez[50];
 	printf("Unos prezimena osobe za Pronaci: \n");
 	scanf(" %s", Prez);
 	while (P != NULL && strcmp(Prez, P->prezime) != 0)
