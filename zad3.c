@@ -157,6 +157,7 @@ int unos_iza(Pozicija P){
 	
 	char Prez[50];
 	printf("Unesi prezime osobe iza koje zelite dodati novu osobu");
+	scanf(" %c",Prez);
 	while (P->next != NULL && strcmp(Prez, P->prezime) != 0)
 	{
 		P = P->next;
