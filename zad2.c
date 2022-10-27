@@ -23,21 +23,21 @@ int main()
 {
 	struct osoba Head;
 	Head.next = NULL;
-	char slovo;
+	int broj;
 	while(1){
-		printf("Unesi slovo za:\nP{umetanje na pocetak}\nK{umetanje na kraj}\nI{ispis osoba}\nT{trazi osobu po prezimenu}\nB{brisi osobu po prezimenu}\nX{izlaz iz programa}\n");
-		scanf(" %c", &slovo);
-		if (slovo == 'P')
+		printf("Unesi broj za:\n1{umetanje na pocetak}\n2{umetanje na kraj}\n3{ispis osoba}\n4{trazi osobu po prezimenu}\n5{brisi osobu po prezimenu}\n0{izlaz iz programa}\n");
+		scanf(" %d", &broj);
+		if (broj == 1)
 			unos_P(&Head);
-		else if (slovo == 'K')
+		else if (broj == 2)
 			unos_K(&Head);
-		else if (slovo == 'I')
+		else if (broj == 3)
 			ispis_I(Head.next);
-		else if (slovo == 'T')
+		else if (broj == 4)
 			trazi_T(Head.next);
-		else if (slovo == 'B')
+		else if (broj == 5)
 			brisi_B(&Head);
-		else if (slovo == 'X')
+		else if (broj == 0)
 			break;
 		else
 			printf("Greska!\n");
@@ -141,5 +141,3 @@ int brisi_B(Pozicija P)
 	}
 	return 0;
 }
-
-
