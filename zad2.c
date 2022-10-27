@@ -17,7 +17,7 @@ int unos_K(Pozicija P);
 int ispis_I(Pozicija P);
 int trazi_T(Pozicija P);
 int brisi_B(Pozicija P);
-
+int brisi_sve(Pozicija P);
 
 int main()
 {
@@ -25,7 +25,7 @@ int main()
 	Head.next = NULL;
 	int broj;
 	while(1){
-		printf("Unesi broj za:\n1{umetanje na pocetak}\n2{umetanje na kraj}\n3{ispis osoba}\n4{trazi osobu po prezimenu}\n5{brisi osobu po prezimenu}\n0{izlaz iz programa}\n");
+		printf("Unesi broj za:\n1{umetanje na pocetak}\n2{umetanje na kraj}\n3{ispis osoba}\n4{trazi osobu po prezimenu}\n5{brisi osobu po prezimenu}\n6{brisi sve}\n0{izlaz iz programa}\n");
 		scanf(" %d", &broj);
 		if (broj == 1)
 			unos_P(&Head);
@@ -36,6 +36,8 @@ int main()
 		else if (broj == 4)
 			trazi_T(Head.next);
 		else if (broj == 5)
+			brisi_B(&Head);
+		else if (broj == 6)
 			brisi_B(&Head);
 		else if (broj == 0)
 			break;
@@ -140,4 +142,15 @@ int brisi_B(Pozicija P)
 		free(P);
 	}
 	return 0;
+}
+
+int brisi_sve(Pozicija P) {
+    Pozicija privr = NULL;
+    while(P->next != NULL) {
+        priv = P;
+        P = P->next;
+        free(privr);
+    }
+    printf("Vasa lista je izbrisana!\n");
+    return 0;
 }
