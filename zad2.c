@@ -29,10 +29,10 @@ int main()
 		scanf(" %c", &slovo);
 		if (slovo == 'P')
 			unos_P(&Head);
-		else if (slovo == 'I')
-			ispis_I(Head.next);
 		else if (slovo == 'K')
 			unos_K(&Head);
+		else if (slovo == 'I')
+			ispis_I(Head.next);
 		else if (slovo == 'T')
 			trazi_T(Head.next);
 		else if (slovo == 'B')
