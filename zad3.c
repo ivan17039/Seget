@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-a
+
 typedef struct osoba* Pozicija;
 struct osoba{
 	char ime[50];
