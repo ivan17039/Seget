@@ -22,6 +22,7 @@ int unos_iza(Pozicija P);
 int unos_ispred(Pozicija P);
 int sort(Pozicija P);
 int upis_U_Dat(Pozicija P);
+int citaj_iz_dat();
 
 int main()
 {
@@ -29,7 +30,7 @@ int main()
 	Head.next = NULL;
 	int broj;
 	while(1){
-		printf("Unesi broj za:\n1{umetanje na pocetak}\n2{umetanje na kraj}\n3{ispis osoba}\n4{trazi osobu po prezimenu}\n5{brisi osobu po prezimenu}\n6{brisi sve}\n7{unos osobe iza}\n8{unos osobe ispred}\n9{sortiraj po prezimenima}\n10{umetanje u datoteku}\n0{izlaz iz programa}\n");
+		printf("Unesi broj za:\n1{umetanje na pocetak}\n2{umetanje na kraj}\n3{ispis osoba}\n4{trazi osobu po prezimenu}\n5{brisi osobu po prezimenu}\n6{brisi sve}\n7{unos osobe iza}\n8{unos osobe ispred}\n9{sortiraj po prezimenima}\n10{umetanje u datoteku}\n11{cita listu iz datoteke}\n0{izlaz iz programa}\n");
 		scanf(" %d", &broj);
 		if (broj == 1)
 			unos_P(&Head);
@@ -51,6 +52,8 @@ int main()
 			sort(&Head);
 		else if (broj == 10)
 			upis_U_Dat(Head.next);
+		else if (broj == 11)
+			citaj_iz_dat();
 		else if (broj == 0)
 			break;
 		else
@@ -155,16 +158,20 @@ int brisi_B(Pozicija P)
 	}
 	return 0;
 }
-int brisi_sve(Pozicija Head){
+int brisi_sve(Pozicija Head) {
 
-	Pozicija privremena = NULL;
+    Pozicija privremena = NULL;
 
     while(Head->next != NULL) {
+
         privremena = Head;
         Head = Head->next;
+
         free(privremena);
     }
+
     printf("Vasa lista je izbrisana!\n");
+
     return 0;
 }
 int unos_iza(Pozicija P){
@@ -224,34 +231,34 @@ int unos_ispred(Pozicija P){
 	return 0;
 
 }
-int sort(Pozicija p)
+int sort(Pozicija P)
 {
 	Pozicija q = NULL;
-	Pozicija prev_q = NULL;
-	Pozicija temp = NULL;
-	Pozicija end = NULL;
-	while (p->next != end)
+	Pozicija preth_q = NULL;
+	Pozicija pomocna = NULL;
+	Pozicija kraj = NULL;
+	while (P->next != kraj)
 	{
-		prev_q = p;
-		q = p->next;
-		while (q->next != end)
+		preth_q = P;
+		q = P->next;
+		while (q->next != kraj)
 		{
 			if (strcmp(q->prezime, q->next->prezime) > 0)
 			{
-				temp = q->next;
-				prev_q->next = temp;
-				q->next = temp->next;
-				temp->next = q;
+				pomocna = q->next;
+				preth_q->next = pomocna;
+				q->next = pomocna->next;
+				pomocna->next = q;
 
-				q = temp;
+				q = pomocna;
 			}
 
-			prev_q = q;
+			preth_q = q;
 			q = q->next;
 		}
-		end = q;
+		kraj = q;
 	}
-	ispis_I(p->next);
+	ispis_I(P->next);
 	return 0;
 }
 int upis_U_Dat(Pozicija P)
@@ -269,5 +276,44 @@ int upis_U_Dat(Pozicija P)
 		P = P->next;
 	}
 	fclose(fp);
+	return 0;
+}
+int citaj_iz_dat()
+{
+	char dat[50];
+	int n = 0;
+	struct osoba Head;
+	Head.next = NULL;
+	Pozicija P = &Head;
+	Pozicija q = NULL;
+
+	printf("Unesite ime datoteke iz koje zelite ucitat zeljenu listu:\n");
+	scanf(" %s", &dat);
+	FILE* fp = NULL;
+	fp = fopen(dat, "r");
+
+	while (!feof(fp))
+	{
+		if (fgetc(fp) == '\n')
+			n++;
+	}
+	rewind(fp);
+	if (n != 0)
+	{
+		for (int i = 0; i < n; i++) {
+			q = (Pozicija)malloc(sizeof(struct osoba));
+			if (q == NULL)
+			{
+				printf("Greska u alokaciji memorije!\n");
+				return 1;
+			}
+			fscanf(fp, "%s %s %d", q->ime, q->prezime, &q->god);
+			q->next = P->next;
+			P->next = q;
+			P = P->next;
+		}
+	}
+	fclose(fp);
+	ispis_I(Head.next);
 	return 0;
 }
